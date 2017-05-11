@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		#div1{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: red;
+		}
+	</style>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript">
+		window.onscroll =  function(){
+			var oDiv = document.getElementById('div1');
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//滚动条的距离
+
+
+			/*oDiv.style.top = scrollTop + ( document.documentElement.clienHeight - oDiv.offsetHeight )/2 +'px';*/
+			var t = scrollTop + ( document.documentElement.clientHeight - oDiv.offsetHeight )/2;
+			// 可见区域的高度 -  div的高度  /2  +  滚动条的高度  == 目标点的高度
+			
+			startMove(parseInt(t));
+		}
+
+		var timer = null;
+
+		function startMove(iTarget){
+
+			var oDiv = document.getElementById('div1');
+
+			clearInterval(timer);
+
+			timer = setInterval(function(){
+				var iSpeed = (iTarget - oDiv.offsetTop)/8;
+				iSpeed = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed)
+
+				if(oDiv.offsetTop == iTarget){
+					clearInterval(timer);
+				}else{
+					oDiv.style.top = oDiv.offsetTop+iSpeed+'px';
+				}
+				document.title = oDiv.offsetTop+'--'+iSpeed;
+			}, 30);
+		}
+	</script>
+</head>
+<body style="height:2000px;">
+	<div id="div1"></div>
+</body>
+</html>
