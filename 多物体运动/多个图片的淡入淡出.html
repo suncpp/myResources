@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css">
+		img{
+			margin-top: 30px;
+			width: 100px;
+			height: 100px;
+			filter: alpha(opacity: 30);
+			opacity: .3;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oimg = document.getElementsByTagName('img');
+
+			for (var i = oimg.length - 1; i >= 0; i--) {
+				oimg[i].alpha = 30;
+
+				oimg[i].onmouseover = function(){
+					starMove(this,100)
+				}
+
+				oimg[i].onmouseout = function(){
+					starMove(this,30)
+				}
+			}
+		}
+		
+
+		function starMove(obj,Itarget){
+			clearInterval(obj.timer);
+
+			obj.timer = setInterval(function(){
+				var iSpeed = (Itarget - obj.alpha)/8;
+				iSpeed = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+				if(obj.alpha == Itarget){
+					clearInterval(obj.timer);
+				}else{
+					obj.alpha += iSpeed;
+
+					obj.style.filter = 'alpha(opacity: '+obj.alpha+')';
+					obj.style.opacity = obj.alpha/100;
+				}
+			},30);
+		}
+	</script>
+</head>
+<body>
+	<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494760509892&di=4707e843a7c42e2ded28a21d8aca6b2e&imgtype=0&src=http%3A%2F%2Fwww.chuangyimao.com%2Fuploads%2Fnews%2F20150130%2F20150130090123ad7e3299b2.jpg" alt="">
+	<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494760509891&di=f8fb70ceb174f20868eb835d9bb98488&imgtype=0&src=http%3A%2F%2Fimg05.3dmgame.com%2Fuploads%2Fallimg%2F150330%2F265_150330222838_1_lit.jpg" alt="">
+	<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494760509890&di=143e9fffb0a86bab7508fd9d94bf1a16&imgtype=0&src=http%3A%2F%2Fimg1.cache.netease.com%2Fcatchpic%2FA%2FAB%2FAB6F8545A8A76BCD0F7E7E8883674D3C.png" alt="">
+</body>
+</html>

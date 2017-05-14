@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style>
+		div{
+			width: 100px;
+			height: 50px;
+			margin-top: 50px;
+			background: red;
+		}
+	</style>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript">
+		window.onload = function(){
+			var oDiv = document.getElementsByTagName('div');
+
+			var i = 0;
+
+			for(i=0;i<oDiv.length;i++){
+				oDiv[i].timer = null;
+				oDiv[i].onmouseover = function(){
+					startMove(this,600)
+				}
+
+				oDiv[i].onmouseout = function(){
+					startMove(this,100)
+				}
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<!-- 距离越大速度越快 距离越小速度越慢 -->
+	<!-- <button id="btn" onclick="startMove(300)">点击运动</button> -->
+	<div></div>
+	<div></div>
+	<div></div>
+	<!-- <span style="width:1px;height:300px;background:#000;position:absolute;top:0;left:300px;">	</span> -->
+</body>
+</html>
+<script>
+	// 利用this代表当前
+	// 给每个物体加一个定时器，利用的是给元素添加自定义属性
+	
+
+	function startMove(obj,iTarget){
+
+		clearInterval(obj.timer);
+
+		obj.timer = setInterval(function(){
+			var iSpeed = (iTarget - obj.offsetWidth)/8;
+			iSpeed = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed)
+
+			if(obj.offsetWidth == iTarget){
+				clearInterval(obj.timer);
+			}else{
+				obj.style.width = obj.offsetWidth+iSpeed+'px';
+			}
+			//document.title = oDiv.offsetLeft+'--'+iSpeed;
+		}, 30);
+	}
+	
+</script>
