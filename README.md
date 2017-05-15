@@ -15,3 +15,7 @@ demo1.html
 
 多物体运动
 获取不同的属性，控制不同的动画
+
+
+链式运动
+index.html   新增move.js
