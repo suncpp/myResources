@@ -19,3 +19,7 @@ demo1.html
 
 链式运动
 index.html   新增move.js
+
+
+完美运动框架
+新增move2.js
