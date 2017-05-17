@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{padding:0;margin:0;}
+		#ul1{
+			width: 366px;
+			margin: 0 auto;
+			position: relative;
+		}
+		#ul1 li{
+			float: left;
+			width: 100px;
+			height: 100px;
+			background: #ccc;
+			border: 1px solid #000;
+			list-style: none;
+			margin: 10px;
+		}
+	</style>
+	<script type="text/javascript" src='../move2.js'></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oUl = document.getElementById('ul1');
+			var oLi = oUl.getElementsByTagName('li');
+			var iMinZindex = 2;
+
+			// 布局转换
+			for (var i = oLi.length - 1; i >= 0; i--) {
+				//oLi[i].innerHTML = oLi[i].offsetLeft+'top'+oLi[i].offsetTop;
+				oLi[i].style.top = oLi[i].offsetTop+'px';
+				oLi[i].style.left = oLi[i].offsetLeft+'px';
+			}
+
+			for (var i = oLi.length - 1; i >= 0; i--) {
+				oLi[i].style.position = 'absolute'
+				oLi[i].style.marge = '0'
+			}
+
+
+			//添加事件
+			for (var i = oLi.length - 1; i >= 0; i--) {
+				oLi[i].onmouseover = function(){
+					this.style.zIndex = iMinZindex++;
+					startMove(this,{width:200, height:200, marginLeft:-50, marginTop:-50});
+				}
+				
+				oLi[i].onmouseout = function(){
+					startMove(this,{width:100, height:100, marginLeft:0, marginTop:0});
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<ul id="ul1">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>
