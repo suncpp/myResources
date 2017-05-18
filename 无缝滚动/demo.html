@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      #div1{
+        border: 1px solid black;
+        position: relative;
+        margin: 10px auto;
+        width: 480px;
+        height: 140px;
+        overflow: hidden;
+      }
+      ul{
+        list-style: none;
+        position: absolute;
+        left: 0;
+      }
+      li{
+        float: left;
+        padding:10px;
+        width: 100px;
+        height: 120px;
+      }
+      img{
+        width: 100px;
+        height: 120px;
+      }
+    </style>
+    <script type="text/javascript">
+      window.onload = function(){
+        var oDiv = document.getElementById('div1');
+        var oUl = oDiv.getElementsByTagName('ul')[0];
+        var oLi = oUl.getElementsByTagName('li');
+        var aBtn = document.getElementsByTagName('button');
+        var timer = null;
+        var iSpeed = -10;
+
+        oUl.innerHTML+=oUl.innerHTML;
+        oUl.style.width = oLi.length*oLi[0].offsetWidth+'px';
+
+        timer = setInterval(function(){
+          //oUl.style.left = oUl.offsetLeft-10+'px'
+          if(oUl.offsetLeft<-oUl.offsetWidth/2){
+              oUl.style.left = 0;
+          }else if(oUl.offsetLeft>0){
+              oUl.style.left = -oUl.offsetWidth/2+'px';
+          }
+            oUl.style.left = oUl.offsetLeft+iSpeed+'px'
+        },30);
+
+        aBtn[0].onclick = function(){
+          iSpeed = -10;
+        }
+        aBtn[1].onclick = function(){
+          iSpeed = 10;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button type="button" name="button">向左</button>
+    <button type="button" name="button">向右</button>
+    <div id="div1">
+      <ul>
+        <li><img src="./img/00.jpg" alt=""></li>
+        <li><img src="./img/002.jpg" alt=""></li>
+        <li><img src="./img/02.jpg" alt=""></li>
+        <li><img src="./img/2.jpg" alt=""></li>
+      </ul>
+    </div>
+  </body>
+</html>
